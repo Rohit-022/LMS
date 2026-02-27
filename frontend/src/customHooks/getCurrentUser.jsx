@@ -13,7 +13,10 @@ const getCurrentUser = ()=>{
                 dispatch(setUserData(result.data))
 
             } catch (error) {
-                console.log(error)
+                // Only log if it's not a 401 (no token) error
+                if(error.response?.status !== 401) {
+                    console.log(error)
+                }
                 dispatch(setUserData(null))
             }
         }

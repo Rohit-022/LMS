@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import logo from '../assets/logo.jpg'
 import google from '../assets/google.jpg'
 import axios from 'axios'
-// import { serverUrl } from '../App'
+import { serverUrl } from '../App'
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 
 import { MdRemoveRedEye } from "react-icons/md";
@@ -24,7 +24,7 @@ function Login() {
     const handleLogin = async () => {
         setLoading(true)
         try {
-            const result = await axios.post(`${$import.meta.env.VITE_BACKEND_URL}+/api/auth/login` , {email , password} ,{withCredentials:true})
+            const result = await axios.post(serverUrl + `/api/auth/login` , {email , password} ,{withCredentials:true})
             dispatch(setUserData(result.data))
             navigate("/")
             setLoading(false)
@@ -46,7 +46,7 @@ function Login() {
                 let role=""
                 
                 
-                const result = await axios.post(`${$import.meta.env.VITE_BACKEND_URL}+ /api/auth/googlesignup` , {name , email , role}
+                const result = await axios.post(serverUrl + `/api/auth/googlesignup` , {name , email , role}
                     , {withCredentials:true}
                 )
                 dispatch(setUserData(result.data))
